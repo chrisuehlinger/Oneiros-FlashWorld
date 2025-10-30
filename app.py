@@ -44,7 +44,7 @@ except ImportError:
     if mode == "Spaces":
         install_cuda_toolkit()
 
-        os.environ["TORCH_CUDA_ARCH_LIST"] = "9.0+PTX"
+        os.environ["TORCH_CUDA_ARCH_LIST"] = "12.0+PTX"
         os.environ["CUDA_HOME"] = "/usr/local/cuda"
         os.environ["PATH"] = "/usr/local/cuda/bin/:" + os.environ["PATH"]
 

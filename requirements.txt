@@ -1,6 +1,6 @@
-torch==2.6.0
-torchvision==0.21.0
-triton==3.2.0
+torch==2.7.0
+torchvision==0.22.0
+triton==3.3.0
 transformers==4.57.0
 omegaconf==2.3.0
 ninja==1.13.0
@@ -14,7 +14,7 @@ ftfy==6.3.1
 gradio==5.49.1
 accelerate==1.10.1
 nanobind==2.9.2
-uvicorn==0.37.9
+uvicorn==0.38.0
 git+https://github.com/huggingface/diffusers.git@447e8322f76efea55d4769cd67c372edbf0715b8
 git+https://github.com/nerfstudio-project/gsplat.git@32f2a54d21c7ecb135320bb02b136b7407ae5712
 git+https://github.com/nianticlabs/spz.git@a4fc69e7948c7152e807e6501d73ddc9c149ce37
