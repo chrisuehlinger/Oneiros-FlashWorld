@@ -4,3 +4,5 @@ model.ckpt
 **/__pycache__/**
 input/
 output/
+
+prompts/
