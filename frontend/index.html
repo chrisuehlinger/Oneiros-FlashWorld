@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VR Dream Prototype</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --hud-bg: rgba(10, 12, 18, 0.65);
+      --hud-border: rgba(90, 180, 255, 0.35);
+      --hud-text: #e0f4ff;
+      --hud-warn: #ffac6b;
+      --hud-error: #ff6b6b;
+      --instruction-bg: rgba(10, 10, 10, 0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #05070f;
+      font-family: "Inter", "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+    }
+
+    #hud {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      padding: 12px 16px;
+      min-width: 260px;
+      background: var(--hud-bg);
+      border: 1px solid var(--hud-border);
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(4, 12, 32, 0.45);
+      backdrop-filter: blur(12px);
+      pointer-events: none;
+      transition: opacity 200ms ease;
+      color: var(--hud-text);
+      line-height: 1.4;
+      font-size: 14px;
+    }
+
+    #hud.hidden {
+      opacity: 0;
+    }
+
+    #hud .label {
+      opacity: 0.65;
+      margin-right: 6px;
+    }
+
+    #hud .warning {
+      color: var(--hud-warn);
+    }
+
+    #hud .error {
+      color: var(--hud-error);
+    }
+
+    #instruction-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      color: #f4f8ff;
+      background: var(--instruction-bg);
+      backdrop-filter: blur(4px);
+      transition: opacity 250ms ease;
+      z-index: 10;
+      text-align: center;
+      padding: 24px;
+    }
+
+    #instruction-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #instruction-overlay button {
+      font: inherit;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #0d111a;
+      background: linear-gradient(135deg, #7ef7ff, #5b8bff);
+      box-shadow: 0 10px 20px rgba(91, 139, 255, 0.35);
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    #instruction-overlay button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(91, 139, 255, 0.45);
+    }
+
+    #instruction-overlay p {
+      max-width: 460px;
+      line-height: 1.5;
+      margin: 0;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="hud" class="hidden">
+    <div id="hud-status">Status: <span class="label">initialising…</span></div>
+    <div id="hud-pending">Pending poses: 0</div>
+    <div id="hud-latency">Generation latency: —</div>
+    <div id="hud-window">Window size: —</div>
+  </div>
+
+  <div id="instruction-overlay">
+    <h1>VR Dream Prototype</h1>
+    <p>
+      Click “Enter Dreamscape” to lock the pointer, then explore with WASD.
+      Space ascends, Shift descends. We will capture your camera path and
+      stream fresh Gaussian splats as you roam.
+    </p>
+    <button id="start-button" type="button">Enter Dreamscape</button>
+  </div>
+
+  <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.178.0/build/three.module.js",
+          "three/examples/jsm/controls/PointerLockControls.js": "https://cdn.jsdelivr.net/npm/three@0.178.0/examples/jsm/controls/PointerLockControls.js",
+          "@sparkjsdev/spark": "https://sparkjs.dev/releases/spark/0.1.10/spark.module.js"
+        }
+      }
+    </script>
+  <script type="module" src="/frontend/vrdream.js"></script>
+</body>
+
+</html>
